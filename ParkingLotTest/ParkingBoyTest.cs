@@ -11,7 +11,7 @@ namespace ParkingLotTest
             //given
             var car = new Car("car_1");
             var newCustomer = new Customer("customer_1", car);
-            var parkingLot = new ParkingLot();
+            var parkingLot = new ParkingLot(3);
             var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
 
             //when
@@ -31,7 +31,7 @@ namespace ParkingLotTest
             var newCustomer_1 = new Customer("customer_1", car_1);
             var car_2 = new Car("car_2");
             var newCustomer_2 = new Customer("customer_2", car_2);
-            var parkingLot = new ParkingLot();
+            var parkingLot = new ParkingLot(3);
             var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
 
             //when
@@ -51,7 +51,7 @@ namespace ParkingLotTest
         public void ParkingBoy_Should_Return_Null_Given_No_Ticket_Or_Wrong_Ticket()
         {
             //given
-            var parkingLot = new ParkingLot();
+            var parkingLot = new ParkingLot(3);
             var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
 
             //when
@@ -69,7 +69,7 @@ namespace ParkingLotTest
             //given
             var car = new Car("car_1");
             var newCustomer = new Customer("customer_1", car);
-            var parkingLot = new ParkingLot();
+            var parkingLot = new ParkingLot(3);
             var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
 
             //when
@@ -78,6 +78,25 @@ namespace ParkingLotTest
             var secondFetchResult = newCustomer.FetchCarFromParkingBoy(parkingBoy, newCustomer.GetTicket(0));
             //then
             Assert.Null(secondFetchResult);
+        }
+
+        [Fact]
+        public void ParkingBoy_Should_Return_NullTicket_When_Over_Capacity()
+        {
+            //given
+            var car_1 = new Car("car_1");
+            var newCustomer_1 = new Customer("customer_1", car_1);
+            var car_2 = new Car("car_2");
+            var newCustomer_2 = new Customer("customer_2", car_2);
+            var parkingLot = new ParkingLot(1);
+            var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
+
+            //when
+            newCustomer_1.PassCarToParkingBoy(parkingBoy);
+            newCustomer_2.PassCarToParkingBoy(parkingBoy);
+
+            //then
+            Assert.Null(newCustomer_2.GetTicket(0));
         }
     }
 }

@@ -18,10 +18,14 @@ namespace ParkingLot
 
         public ParkingTicket ParkCar(Car car)
         {
-            this.parkingLot.AddCar(car);
-            var parkingTicketGenerated = new ParkingTicket(this.Id, car.Id, car.OwnerId);
-            ticketHistoryList.Add(parkingTicketGenerated);
-            return parkingTicketGenerated;
+            if (this.parkingLot.AddCar(car))
+            {
+                var parkingTicketGenerated = new ParkingTicket(this.Id, car.Id, car.OwnerId);
+                ticketHistoryList.Add(parkingTicketGenerated);
+                return parkingTicketGenerated;
+            }
+
+            return null;
         }
 
         public Car FetchCar(ParkingTicket parkingTicket)
