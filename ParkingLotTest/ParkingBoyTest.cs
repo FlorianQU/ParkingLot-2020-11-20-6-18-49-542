@@ -62,5 +62,22 @@ namespace ParkingLotTest
             Assert.Null(resultOfNoTicket);
             Assert.Null(resultOfWrongTicket);
         }
+
+        [Fact]
+        public void ParkingBoy_Should_Fetch_Null_Given_Used_Ticket()
+        {
+            //given
+            var car = new Car("car_1");
+            var newCustomer = new Customer("customer_1", car);
+            var parkingLot = new ParkingLot();
+            var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
+
+            //when
+            newCustomer.PassCarToParkingBoy(parkingBoy);
+            newCustomer.FetchCarFromParkingBoy(parkingBoy, newCustomer.GetTicket(0));
+            var secondFetchResult = newCustomer.FetchCarFromParkingBoy(parkingBoy, newCustomer.GetTicket(0));
+            //then
+            Assert.Null(secondFetchResult);
+        }
     }
 }

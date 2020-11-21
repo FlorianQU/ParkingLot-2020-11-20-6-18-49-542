@@ -1,9 +1,12 @@
-﻿namespace ParkingLot
+﻿using System.Collections.Generic;
+
+namespace ParkingLot
 {
     using System;
     public class ParkingBoy
     {
         private ParkingLot parkingLot;
+        private List<ParkingTicket> ticketHistoryList = new List<ParkingTicket>();
 
         public ParkingBoy(string id, ParkingLot parkingLot)
         {
@@ -16,12 +19,14 @@
         public ParkingTicket ParkCar(Car car)
         {
             this.parkingLot.AddCar(car);
-            return new ParkingTicket(this.Id, car.Id, car.OwnerId);
+            var parkingTicketGenerated = new ParkingTicket(this.Id, car.Id, car.OwnerId);
+            ticketHistoryList.Add(parkingTicketGenerated);
+            return parkingTicketGenerated;
         }
 
         public Car FetchCar(ParkingTicket parkingTicket)
         {
-            if (parkingTicket == null || parkingTicket.ParkingBoyId != this.Id)
+            if (parkingTicket == null || !ticketHistoryList.Contains(parkingTicket) || parkingTicket.IsUsed)
             {
                 return null;
             }
