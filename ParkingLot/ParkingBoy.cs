@@ -5,8 +5,9 @@
     {
         private ParkingLot parkingLot;
 
-        public ParkingBoy(ParkingLot parkingLot)
+        public ParkingBoy(string id, ParkingLot parkingLot)
         {
+            Id = id;
             this.parkingLot = parkingLot;
         }
 
@@ -20,6 +21,11 @@
 
         public Car FetchCar(ParkingTicket parkingTicket)
         {
+            if (parkingTicket == null || parkingTicket.ParkingBoyId != this.Id)
+            {
+                return null;
+            }
+
             return this.parkingLot.FindCar(parkingTicket.CarId);
         }
     }

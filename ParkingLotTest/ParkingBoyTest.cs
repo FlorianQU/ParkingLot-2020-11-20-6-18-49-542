@@ -12,7 +12,7 @@ namespace ParkingLotTest
             var car = new Car("car_1");
             var newCustomer = new Customer("customer_1", car);
             var parkingLot = new ParkingLot();
-            var parkingBoy = new ParkingBoy(parkingLot);
+            var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
 
             //when
             newCustomer.PassCarToParkingBoy(parkingBoy);
@@ -32,7 +32,7 @@ namespace ParkingLotTest
             var car_2 = new Car("car_2");
             var newCustomer_2 = new Customer("customer_2", car_2);
             var parkingLot = new ParkingLot();
-            var parkingBoy = new ParkingBoy(parkingLot);
+            var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
 
             //when
             newCustomer_1.PassCarToParkingBoy(parkingBoy);
@@ -45,6 +45,22 @@ namespace ParkingLotTest
             var carReturned_2 = newCustomer_2.FetchCarFromParkingBoy(parkingBoy, newCustomer_2.GetTicket(0));
             Assert.Equal(car_1, carReturned_1);
             Assert.Equal(car_2, carReturned_2);
+        }
+
+        [Fact]
+        public void ParkingBoy_Should_Return_Null_Given_No_Ticket_Or_Wrong_Ticket()
+        {
+            //given
+            var parkingLot = new ParkingLot();
+            var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
+
+            //when
+            var resultOfNoTicket = parkingBoy.FetchCar(null);
+            var resultOfWrongTicket = parkingBoy.FetchCar(new ParkingTicket("another_parkingBoy", "new_Car", "new_Customer"));
+
+            //then
+            Assert.Null(resultOfNoTicket);
+            Assert.Null(resultOfWrongTicket);
         }
     }
 }
