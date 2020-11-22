@@ -21,5 +21,24 @@ namespace ParkingLotTest
             //then
             Assert.True(manager.ManageParkingBoy(parkingBoy_2));
         }
+
+        [Fact]
+        public void Manager_Should_Park_And_Fetch_Car_Correctly()
+        {
+            //given
+            var car = new Car("car_1");
+            var newCustomer = new Customer("customer_1", car);
+            var parkingLot = new ParkingLot.ParkingLot("parkingLot_1", 3);
+            var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
+            var manager = new ParkingLotServiceManager("manager_1", parkingLot, new List<ParkingBoy>(new[] { parkingBoy }));
+
+            //when
+            newCustomer.PassCarToParkingBoy(manager);
+
+            //then
+            Assert.True(parkingLot.ContainCar(car));
+            var carReturned = newCustomer.FetchCarFromParkingBoy(manager, newCustomer.GetTicket(0));
+            Assert.Equal(car, carReturned);
+        }
     }
 }
