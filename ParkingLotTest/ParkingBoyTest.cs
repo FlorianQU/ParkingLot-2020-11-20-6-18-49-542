@@ -98,5 +98,22 @@ namespace ParkingLotTest
             //then
             Assert.Null(newCustomer_2.GetTicket(0));
         }
+
+        [Fact]
+        public void ParkingBoy_Should_Return_Null_Given_Parked_Car()
+        {
+            //given
+            var car = new Car("car_1");
+            var newCustomer = new Customer("customer_1", car);
+            var parkingLot = new ParkingLot(3);
+            var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
+
+            //when
+            newCustomer.PassCarToParkingBoy(parkingBoy);
+            var resultGivenParkedCar = parkingBoy.ParkCar(car);
+
+            //then
+            Assert.Null(resultGivenParkedCar);
+        }
     }
 }

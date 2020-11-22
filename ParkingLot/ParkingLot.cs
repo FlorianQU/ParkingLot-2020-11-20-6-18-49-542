@@ -17,7 +17,7 @@ namespace ParkingLot
 
         public bool AddCar(Car car)
         {
-            if (parkedCars.Count < Capacity)
+            if (parkedCars.Count < Capacity && !parkedCars.Contains(car))
             {
                 this.parkedCars.Add(car);
                 return true;
