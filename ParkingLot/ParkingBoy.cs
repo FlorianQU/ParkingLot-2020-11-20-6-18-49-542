@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
+using static System.String;
 
 namespace ParkingLot
 {
-    using System;
     public class ParkingBoy
     {
         private ParkingLot parkingLot;
@@ -16,8 +16,9 @@ namespace ParkingLot
 
         public string Id { get; }
 
-        public ParkingTicket ParkCar(Car car)
+        public ParkingTicket ParkCar(Car car, out string errorMessage)
         {
+            errorMessage = string.Empty;
             if (car != null && this.parkingLot.AddCar(car))
             {
                 var parkingTicketGenerated = new ParkingTicket(this.Id, car.Id, car.OwnerId);
@@ -25,16 +26,26 @@ namespace ParkingLot
                 return parkingTicketGenerated;
             }
 
+            errorMessage += "Not enough position.";
             return null;
         }
 
-        public Car FetchCar(ParkingTicket parkingTicket)
+        public Car FetchCar(ParkingTicket parkingTicket, out string errorMessage)
         {
-            if (parkingTicket == null || !ticketHistoryList.Contains(parkingTicket) || parkingTicket.IsUsed)
+            errorMessage = string.Empty;
+            if (parkingTicket == null)
             {
+                errorMessage += "Please provide your parking ticket.";
                 return null;
             }
 
+            if (!ticketHistoryList.Contains(parkingTicket) || parkingTicket.IsUsed)
+            {
+                errorMessage += "Unrecognized parking ticket.";
+                return null;
+            }
+
+            parkingTicket.UseTicket();
             return this.parkingLot.FindCar(parkingTicket.CarId);
         }
     }

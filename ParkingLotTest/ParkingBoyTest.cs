@@ -51,12 +51,15 @@ namespace ParkingLotTest
         public void ParkingBoy_Should_Return_Null_Given_No_Ticket_Or_Wrong_Ticket()
         {
             //given
+            var car = new Car("car_1");
+            var newCustomer = new Customer("customer_1", car);
             var parkingLot = new ParkingLot(3);
             var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
 
             //when
-            var resultOfNoTicket = parkingBoy.FetchCar(null);
-            var resultOfWrongTicket = parkingBoy.FetchCar(new ParkingTicket("another_parkingBoy", "new_Car", "new_Customer"));
+            newCustomer.PassCarToParkingBoy(parkingBoy);
+            var resultOfNoTicket = parkingBoy.FetchCar(null, out _);
+            var resultOfWrongTicket = parkingBoy.FetchCar(new ParkingTicket("another_parkingBoy", "new_Car", "new_Customer"), out _);
 
             //then
             Assert.Null(resultOfNoTicket);
@@ -110,7 +113,7 @@ namespace ParkingLotTest
 
             //when
             newCustomer.PassCarToParkingBoy(parkingBoy);
-            var resultGivenParkedCar = parkingBoy.ParkCar(car);
+            var resultGivenParkedCar = parkingBoy.ParkCar(car, out _);
 
             //then
             Assert.Null(resultGivenParkedCar);
@@ -124,7 +127,7 @@ namespace ParkingLotTest
             var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
 
             //when
-            var resultGivenParkedCar = parkingBoy.ParkCar(null);
+            var resultGivenParkedCar = parkingBoy.ParkCar(null, out _);
 
             //then
             Assert.Null(resultGivenParkedCar);

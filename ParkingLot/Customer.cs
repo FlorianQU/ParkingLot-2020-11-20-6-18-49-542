@@ -8,6 +8,7 @@ namespace ParkingLot
     {
         private List<ParkingTicket> myTickets = new List<ParkingTicket>();
         private Car myCar;
+        private List<string> errorMessageBox = new List<string>();
 
         public Customer(string id, Car car)
         {
@@ -19,17 +20,33 @@ namespace ParkingLot
         public string Id { get; }
         public void PassCarToParkingBoy(ParkingBoy parkingBoy)
         {
-            this.myTickets.Add(parkingBoy.ParkCar(this.myCar));
+            this.myTickets.Add(parkingBoy.ParkCar(this.myCar, out var errorMessage));
+            AddMessage(errorMessage);
         }
 
         public Car FetchCarFromParkingBoy(ParkingBoy parkingBoy, ParkingTicket parkingTicket)
         {
-            return parkingBoy.FetchCar(parkingTicket);
+            var resultCar = parkingBoy.FetchCar(parkingTicket, out var errorMessage);
+            AddMessage(errorMessage);
+            return resultCar;
         }
 
         public ParkingTicket GetTicket(int index)
         {
             return this.myTickets[index];
+        }
+
+        public string GetLatestMessage()
+        {
+            return errorMessageBox[-1];
+        }
+
+        private void AddMessage(string errorMessage)
+        {
+            if (errorMessage != null)
+            {
+                this.errorMessageBox.Add(errorMessage);
+            }
         }
     }
 }
