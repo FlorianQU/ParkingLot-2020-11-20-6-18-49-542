@@ -18,7 +18,7 @@ namespace ParkingLot
 
         public ParkingTicket ParkCar(Car car)
         {
-            if (this.parkingLot.AddCar(car))
+            if (car != null && this.parkingLot.AddCar(car))
             {
                 var parkingTicketGenerated = new ParkingTicket(this.Id, car.Id, car.OwnerId);
                 ticketHistoryList.Add(parkingTicketGenerated);
