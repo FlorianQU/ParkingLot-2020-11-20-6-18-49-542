@@ -25,7 +25,7 @@ namespace ParkingLot
         {
             var parkingLotChosen = ParkingLotList.Where(lot => !lot.IsFull).ToList();
             return parkingLotChosen.Any()
-                ? parkingLotChosen.OrderBy(lot => lot.LotAvailable).First()
+                ? parkingLotChosen.OrderByDescending(lot => lot.LotAvailable).First()
                 : ParkingLotList[^1];
         }
     }
