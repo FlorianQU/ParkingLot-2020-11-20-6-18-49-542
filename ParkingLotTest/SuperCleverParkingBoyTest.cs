@@ -5,10 +5,10 @@ namespace ParkingLotTest
     using ParkingLot;
     using Xunit;
 
-    public class CleverParkingBoyTest
+    public class SuperCleverParkingBoyTest
     {
         [Fact]
-        public void Clever_ParkingBoy_Should_Park_And_Fetch_Car_Correctly()
+        public void Super_Clever_ParkingBoy_Should_Park_And_Fetch_Car_Correctly()
         {
             //given
             var car_1 = new Car("car_1");
@@ -19,7 +19,7 @@ namespace ParkingLotTest
             var newCustomer_3 = new Customer("customer_1", car_3);
             var parkingLot_1 = new ParkingLot("parkingLot_1", 2);
             var parkingLot_2 = new ParkingLot("parkingLot_2", 2);
-            var parkingBoy = new CleverParkingBoy("parkingBoy_1", new List<ParkingLot>(new[] { parkingLot_1, parkingLot_2 }));
+            var parkingBoy = new SuperCleverParkingBoy("parkingBoy_1", new List<ParkingLot>(new[] { parkingLot_1, parkingLot_2 }));
 
             //when
             newCustomer_1.PassCarToParkingBoy(parkingBoy);
@@ -39,7 +39,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Clever_ParkingBoy_Should_Park_And_Fetch_Car_Correctly_Given_Multiple()
+        public void Super_Clever_ParkingBoy_Should_Park_And_Fetch_Car_Correctly_Given_Multiple()
         {
             //given
             var car_1 = new Car("car_1");
@@ -47,7 +47,7 @@ namespace ParkingLotTest
             var car_2 = new Car("car_2");
             var newCustomer_2 = new Customer("customer_2", car_2);
             var parkingLot = new ParkingLot("parkingLot_1", 3);
-            var parkingBoy = new CleverParkingBoy("parkingBoy_1", parkingLot);
+            var parkingBoy = new SuperCleverParkingBoy("parkingBoy_1", parkingLot);
 
             //when
             newCustomer_1.PassCarToParkingBoy(parkingBoy);
@@ -63,13 +63,13 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Clever_ParkingBoy_Should_Return_Null_Given_No_Ticket_Or_Wrong_Ticket()
+        public void Super_Clever_ParkingBoy_Should_Return_Null_Given_No_Ticket_Or_Wrong_Ticket()
         {
             //given
             var car = new Car("car_1");
             var newCustomer = new Customer("customer_1", car);
             var parkingLot = new ParkingLot("parkingLot_1", 3);
-            var parkingBoy = new CleverParkingBoy("parkingBoy_1", parkingLot);
+            var parkingBoy = new SuperCleverParkingBoy("parkingBoy_1", parkingLot);
 
             //when
             newCustomer.PassCarToParkingBoy(parkingBoy);
@@ -82,13 +82,13 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Clever_ParkingBoy_Should_Fetch_Null_Given_Used_Ticket()
+        public void Super_Clever_ParkingBoy_Should_Fetch_Null_Given_Used_Ticket()
         {
             //given
             var car = new Car("car_1");
             var newCustomer = new Customer("customer_1", car);
             var parkingLot = new ParkingLot("parkingLot_1", 3);
-            var parkingBoy = new CleverParkingBoy("parkingBoy_1", parkingLot);
+            var parkingBoy = new SuperCleverParkingBoy("parkingBoy_1", parkingLot);
 
             //when
             newCustomer.PassCarToParkingBoy(parkingBoy);
@@ -99,7 +99,7 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Clever_ParkingBoy_Should_Return_NullTicket_When_Over_Capacity()
+        public void Super_Clever_ParkingBoy_Should_Return_NullTicket_When_Over_Capacity()
         {
             //given
             var car_1 = new Car("car_1");
@@ -107,7 +107,7 @@ namespace ParkingLotTest
             var car_2 = new Car("car_2");
             var newCustomer_2 = new Customer("customer_2", car_2);
             var parkingLot = new ParkingLot("parkingLot_1", 1);
-            var parkingBoy = new CleverParkingBoy("parkingBoy_1", parkingLot);
+            var parkingBoy = new SuperCleverParkingBoy("parkingBoy_1", parkingLot);
 
             //when
             newCustomer_1.PassCarToParkingBoy(parkingBoy);
@@ -118,13 +118,13 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Clever_ParkingBoy_Should_Return_Null_Given_Parked_Car()
+        public void Super_Clever_ParkingBoy_Should_Return_Null_Given_Parked_Car()
         {
             //given
             var car = new Car("car_1");
             var newCustomer = new Customer("customer_1", car);
             var parkingLot = new ParkingLot("parkingLot_1", 3);
-            var parkingBoy = new CleverParkingBoy("parkingBoy_1", parkingLot);
+            var parkingBoy = new SuperCleverParkingBoy("parkingBoy_1", parkingLot);
 
             //when
             newCustomer.PassCarToParkingBoy(parkingBoy);
@@ -135,11 +135,11 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Clever_ParkingBoy_Should_Return_Null_Given_Null_Car()
+        public void Super_Clever_ParkingBoy_Should_Return_Null_Given_Null_Car()
         {
             //given
             var parkingLot = new ParkingLot("parkingLot_1", 3);
-            var parkingBoy = new CleverParkingBoy("parkingBoy_1", parkingLot);
+            var parkingBoy = new SuperCleverParkingBoy("parkingBoy_1", parkingLot);
 
             //when
             var resultGivenParkedCar = parkingBoy.ParkCar(null, out _);
@@ -149,13 +149,13 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Clever_ParkingBoy_Should_Choose_ParkingLot_In_Order()
+        public void Super_Clever_ParkingBoy_Should_Choose_ParkingLot_In_Order()
         {
             //given
             var parkingLot_1 = new ParkingLot("parkingLot_1", 2);
             var parkingLot_2 = new ParkingLot("parkingLot_2", 3);
             var parkingBoy =
-                new CleverParkingBoy("parkingBoy_1", new List<ParkingLot>(new[] { parkingLot_1, parkingLot_2 }));
+                new SuperCleverParkingBoy("parkingBoy_1", new List<ParkingLot>(new[] { parkingLot_1, parkingLot_2 }));
             var car_1 = new Car("car_1");
             var car_2 = new Car("car_2");
             var car_3 = new Car("car_3");
@@ -165,8 +165,8 @@ namespace ParkingLotTest
             var parkingResult_3 = parkingBoy.ParkCar(car_3, out _);
 
             //then
-            Assert.Equal("parkingLot_2", parkingResult_1.ParkingLotId);
-            Assert.Equal("parkingLot_1", parkingResult_2.ParkingLotId);
+            Assert.Equal("parkingLot_1", parkingResult_1.ParkingLotId);
+            Assert.Equal("parkingLot_2", parkingResult_2.ParkingLotId);
             Assert.Equal("parkingLot_2", parkingResult_3.ParkingLotId);
 
             Assert.Equal("car_1", parkingResult_1.CarId);
@@ -175,13 +175,13 @@ namespace ParkingLotTest
         }
 
         [Fact]
-        public void Clever_ParkingBoy_Should_Choose_ParkingLot_In_Order_When_Equal_Capacity()
+        public void Super_Clever_ParkingBoy_Should_Choose_ParkingLot_In_Order_When_Equal_Capacity()
         {
             //given
             var parkingLot_1 = new ParkingLot("parkingLot_1", 2);
             var parkingLot_2 = new ParkingLot("parkingLot_2", 2);
             var parkingBoy =
-                new CleverParkingBoy("parkingBoy_1", new List<ParkingLot>(new[] { parkingLot_1, parkingLot_2 }));
+                new SuperCleverParkingBoy("parkingBoy_1", new List<ParkingLot>(new[] { parkingLot_1, parkingLot_2 }));
             var car_1 = new Car("car_1");
             var car_2 = new Car("car_2");
             var car_3 = new Car("car_3");

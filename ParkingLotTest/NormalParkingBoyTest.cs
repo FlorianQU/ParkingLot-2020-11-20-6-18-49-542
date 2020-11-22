@@ -16,7 +16,7 @@ namespace ParkingLotTest
             var car_2 = new Car("car_2");
             var newCustomer_2 = new Customer("customer_2", car_2);
             var car_3 = new Car("car_3");
-            var newCustomer_3 = new Customer("customer_1", car_3);
+            var newCustomer_3 = new Customer("customer_3", car_3);
             var parkingLot_1 = new ParkingLot("parkingLot_1", 2);
             var parkingLot_2 = new ParkingLot("parkingLot_2", 3);
             var parkingBoy = new NormalParkingBoy("parkingBoy_1", new List<ParkingLot>(new[] { parkingLot_1, parkingLot_2 }));
