@@ -15,6 +15,8 @@ namespace ParkingLot
         }
 
         public bool IsFull => this.parkedCars.Count == Capacity;
+        public long LotAvailable => Capacity - this.parkedCars.Count;
+        public double AvailablePositionRate => (double)LotAvailable / Capacity;
 
         public string Id { get; }
         public long Capacity { get; } = 10;

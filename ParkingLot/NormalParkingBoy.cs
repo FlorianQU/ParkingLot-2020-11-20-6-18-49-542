@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace ParkingLot
@@ -22,8 +23,8 @@ namespace ParkingLot
 
         public ParkingLot ChooseParkingLot()
         {
-            var parkingLotChosen = ParkingLotList.Find(lot => !lot.IsFull);
-            return parkingLotChosen ?? ParkingLotList[^1];
+            var parkingLotsChosen = ParkingLotList.Where(lot => !lot.IsFull).ToList();
+            return parkingLotsChosen.Any() ? parkingLotsChosen.First() : ParkingLotList[^1];
         }
     }
 }
