@@ -9,5 +9,6 @@
     &lt;TestId&gt;xUnit::A8ADF2B5-445D-4A86-8DBF-0350586E4EFC::.NETCoreApp,Version=v3.1::ParkingLotTest.CleverParkingBoyErrorMessageTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::A8ADF2B5-445D-4A86-8DBF-0350586E4EFC::.NETCoreApp,Version=v3.1::ParkingLotTest.SuperCleverParkingBoyTest&lt;/TestId&gt;&#xD;
     &lt;TestId&gt;xUnit::A8ADF2B5-445D-4A86-8DBF-0350586E4EFC::.NETCoreApp,Version=v3.1::ParkingLotTest.SuperCleverParkingBoyErrorMessageTest&lt;/TestId&gt;&#xD;
+    &lt;TestId&gt;xUnit::A8ADF2B5-445D-4A86-8DBF-0350586E4EFC::.NETCoreApp,Version=v3.1::ParkingLotTest.ParkingLotManagerTest&lt;/TestId&gt;&#xD;
   &lt;/TestAncestor&gt;&#xD;
 &lt;/SessionState&gt;</s:String></wpf:ResourceDictionary>

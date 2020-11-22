@@ -7,6 +7,10 @@ namespace ParkingLot
     public class ParkingLot
     {
         private List<Car> parkedCars = new List<Car>();
+        public ParkingLot(string id)
+        {
+            Id = id;
+        }
 
         public ParkingLot(string id, long capacity)
         {
