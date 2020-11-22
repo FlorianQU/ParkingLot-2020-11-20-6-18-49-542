@@ -59,5 +59,25 @@ namespace ParkingLotTest
             //then
             Assert.Equal(expectedMessage, errorMessage);
         }
+
+        [Fact]
+        public void ParkingBoy_Should_Add_Error_Message_Given_Outof_Capacity()
+        {
+            //given
+            var parkingLot = new ParkingLot.ParkingLot(2);
+            var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
+            var car_1 = new Car("car_1");
+            var car_2 = new Car("car_2");
+            var car_3 = new Car("car_3");
+
+            //when
+            parkingBoy.ParkCar(car_1, out _);
+            parkingBoy.ParkCar(car_2, out _);
+            parkingBoy.ParkCar(car_3, out var errorMessage);
+            var expectedMessage = "Not enough position.";
+
+            //then
+            Assert.Equal(expectedMessage, errorMessage);
+        }
     }
 }
