@@ -14,12 +14,12 @@ namespace ParkingLotTest
             //given
             var car = new Car("car_1");
             var newCustomer = new Customer("customer_1", car);
-            var parkingLot = new ParkingLot.ParkingLot(3);
+            var parkingLot = new ParkingLot.ParkingLot("parkingLot_1", 3);
             var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
 
             //when
             newCustomer.PassCarToParkingBoy(parkingBoy);
-            var resultOfWrongTicket = parkingBoy.FetchCar(new ParkingTicket("another_parkingBoy", "new_Car", "new_Customer"), out var errorMessage);
+            var resultOfWrongTicket = parkingBoy.FetchCar(new ParkingTicket("another_parkingBoy", "new_Car", "new_Customer", "another_ParkingLot"), out var errorMessage);
             var expectedMessage = "Unrecognized parking ticket.";
 
             //then
@@ -32,7 +32,7 @@ namespace ParkingLotTest
             //given
             var car = new Car("car_1");
             var newCustomer = new Customer("customer_1", car);
-            var parkingLot = new ParkingLot.ParkingLot(3);
+            var parkingLot = new ParkingLot.ParkingLot("parkingLot_1", 3);
             var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
 
             //when
@@ -49,7 +49,7 @@ namespace ParkingLotTest
         public void ParkingBoy_Should_Add_Error_Message_Given_No_Ticket()
         {
             //given
-            var parkingLot = new ParkingLot.ParkingLot(3);
+            var parkingLot = new ParkingLot.ParkingLot("parkingLot_1", 3);
             var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
 
             //when
@@ -64,7 +64,7 @@ namespace ParkingLotTest
         public void ParkingBoy_Should_Add_Error_Message_Given_Outof_Capacity()
         {
             //given
-            var parkingLot = new ParkingLot.ParkingLot(2);
+            var parkingLot = new ParkingLot.ParkingLot("parkingLot_1", 2);
             var parkingBoy = new ParkingBoy("parkingBoy_1", parkingLot);
             var car_1 = new Car("car_1");
             var car_2 = new Car("car_2");

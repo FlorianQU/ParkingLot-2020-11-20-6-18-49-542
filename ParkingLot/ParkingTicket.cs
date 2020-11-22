@@ -6,23 +6,24 @@ namespace ParkingLot
 {
     public class ParkingTicket
     {
-        private bool isUsed = false;
-        public ParkingTicket(string parkingBoyId, string carId, string carOwnerId)
+        public ParkingTicket(string parkingBoyId, string carId, string carOwnerId, string parkingLotId)
         {
             ParkingBoyId = parkingBoyId;
             CarId = carId;
             CarOwnerId = carOwnerId;
+            ParkingLotId = parkingLotId;
         }
 
         public string ParkingBoyId { get; }
         public string CarId { get; }
         public string CarOwnerId { get; }
+        public string ParkingLotId { get; }
 
-        public bool IsUsed => isUsed;
+        public bool IsUsed { get; private set; }
 
         public void UseTicket()
         {
-            this.isUsed = true;
+            this.IsUsed = true;
         }
     }
 }

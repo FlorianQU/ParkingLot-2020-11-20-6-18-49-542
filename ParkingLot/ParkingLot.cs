@@ -8,11 +8,15 @@ namespace ParkingLot
     {
         private List<Car> parkedCars = new List<Car>();
 
-        public ParkingLot(long capacity)
+        public ParkingLot(string id, long capacity)
         {
+            Id = id;
             this.Capacity = capacity;
         }
 
+        public bool IsFull => this.parkedCars.Count == Capacity;
+
+        public string Id { get; }
         public long Capacity { get; } = 10;
 
         public bool AddCar(Car car)
